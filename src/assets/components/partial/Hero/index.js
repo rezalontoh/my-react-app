@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
+
 const Hero = () => {
   const [heroTitle, setHeroTitle] = useState("");
   const [heroSubTitle, setHeroSubTitle] = useState("");
@@ -44,7 +45,7 @@ const Hero = () => {
                 data-reveal-delay={400}
               >
                 {heroSubTitle}
-                {personalInfo.nama}
+                {personalInfo.name}
               </p>
             </div>
           </div>
@@ -59,8 +60,8 @@ const Hero = () => {
           >
             <img
               className="has-shadow"
-              src="images/hero-image.png"
-              alt="Hero image"
+              src="images/_RAL2758.JPG"
+              alt="Hero images"
               width={896}
               height={504}
             />
