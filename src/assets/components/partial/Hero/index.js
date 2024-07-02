@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
-
 const Hero = () => {
   const [heroTitle, setHeroTitle] = useState("");
   const [heroSubTitle, setHeroSubTitle] = useState("");
-  const [personalInfo, setPersonalInfo] = useState({});
+  const [personalInfo, setPersonalInfo] = useState({ name: "" }); // Nilai default dengan name sebagai string kosong
 
   useEffect(() => {
     const db = getDatabase();
@@ -23,8 +22,7 @@ const Hero = () => {
     const personalInfoRef = ref(db, "personalInfo");
     onValue(personalInfoRef, (snapshot) => {
       const data = snapshot.val();
-      setPersonalInfo(data);
-      // setHeroSubTitle(data);
+      setPersonalInfo(data || { name: "" }); // Mengatasi kasus null dengan memberikan nilai default
     });
   }, []);
 
@@ -44,17 +42,12 @@ const Hero = () => {
                 className="mt-0 mb-32 reveal-from-bottom"
                 data-reveal-delay={400}
               >
-                {heroSubTitle}
-                {personalInfo.name}
+                {heroSubTitle} {personalInfo.name}
               </p>
             </div>
           </div>
           <div
-            className="
-									hero-figure
-									reveal-from-bottom
-									illustration-element-01
-								"
+            className="hero-figure reveal-from-bottom illustration-element-01"
             data-reveal-value="20px"
             data-reveal-delay={800}
           >
